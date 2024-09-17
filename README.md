@@ -21,6 +21,4 @@ sh test_services.sh
 ## Accessing the Services
 1. Frontend is available at <http://localhost:3000/>
 2. Backend Swagger is available at <http://localhost:5001/swagger/index.html>
-
-## MongoDB
 3. MongoDB can be accessed with Compass or by connecting to <http://localhost:27017/>
