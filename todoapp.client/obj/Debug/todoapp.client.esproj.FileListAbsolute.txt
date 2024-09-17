@@ -1,0 +1,2 @@
+C:\Users\cristian\source\repos\TodoApp\todoapp.client\obj\Debug\todoapp.client.esproj.CoreCompileInputs.cache
+Y:\TodoApp\todoapp.client\obj\Debug\todoapp.client.esproj.CoreCompileInputs.cache

@@ -1,0 +1,42 @@
+version: '3.9'
+services:
+  mongo:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: TodoDb
+    volumes:
+      - ./database/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+
+  webapi:
+    build:
+      context: ./TodoApp.Server
+      dockerfile: Dockerfile
+    container_name: webapi
+    ports:
+      - "5001:80"
+    environment:
+      MongoDB__ConnectionString: "mongodb://mongo:27017"
+      MongoDB__DatabaseName: "TodoDb"
+      ASPNETCORE_ENVIRONMENT: "Production"
+      ASPNETCORE_URLS: "http://0.0.0.0:80"
+    depends_on:
+      - mongo
+
+  webapp:
+    build:
+      context: ./todoapp.client
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: "http://webapi:80"
+    container_name: webapp
+    environment:
+      DOCKER: "true"   
+    ports:
+      - "3000:80"
+    depends_on:
+      - webapi
