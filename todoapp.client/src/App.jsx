@@ -53,7 +53,9 @@ function App() {
         } else {
         console.error("Error adding todo:", error.message); 
         }
-        setError("Failed to add todo. Please try again.");
+        setError(
+         `Failed to add todo. * Demo: Please refresh the page. * Error: ${error.message}`
+        );
     });
   }
 
